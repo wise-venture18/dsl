@@ -1,7 +1,10 @@
  
-// In any language program mostly syntax error occurs due to unbalancing 
-// delimiter such as (),{},[]. Write C++ program using stack to check whether 
-// given expression is well parenthesized or not.
+ 
+// Implement C++ program for expression conversion as infix to postfix and its 
+// evaluation using stack based on given conditions: 
+// 1. Operands and operator, both must be single character. 
+// 2. Input Postfix expression must be in a desired format. 
+// 3. Only '+', '-', '*' and '/ ' operators are expected. 
 
 #include <iostream>
 #include <stack>
