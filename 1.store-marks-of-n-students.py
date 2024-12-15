@@ -7,16 +7,48 @@ c) Count of students who were absent for the test
 d)Display mark with highest frequency"""
 
 #CODE :
+def Average(marks, present_count):
+    sum_marks = 0
+    for mark in marks:
+        if isinstance(mark, int):  # Only add valid marks (not 'AB')
+            sum_marks += mark
+    if present_count > 0:
+        return sum_marks / present_count
+    return 0
+
+def Highest(marks):
+    highest = -1
+    for mark in marks:
+        if mark != 'AB' and mark > highest:
+            highest = mark
+    return highest
+
+def Lowest(marks):
+    lowest = 101
+    for mark in marks:
+        if mark != 'AB' and mark < lowest:
+            lowest = mark
+    return lowest
+
+def Absent(marks):
+    return marks.count('AB')
+
+def HighestFrequency(marks):
+    frequency = {}
+    for mark in marks:
+        if mark != 'AB':
+            if mark in frequency:
+                frequency[mark] += 1
+            else:
+                frequency[mark] = 1
+    return frequency
+
+# Main program to get user input and display results
 n = int(input("Enter the number of students: "))
 
 # Initialize variables
 marks = []
 present_count = 0
-sum_marks = 0
-highest = -1
-lowest = 101
-absent_count = 0
-frequency = {}
 
 # Collect marks
 print("Enter marks for each student (or 'AB' if absent):")
@@ -25,32 +57,19 @@ for i in range(n):
     
     if mark.upper() == 'AB':
         marks.append('AB')
-        absent_count += 1
     else:
         mark = int(mark)
         marks.append(mark)
         present_count += 1
-        sum_marks += mark
 
-        # Update highest and lowest scores
-        if mark > highest:
-            highest = mark
-        if mark < lowest:
-            lowest = mark
+# Call the functions
+average = Average(marks, present_count)
+highest_score = Highest(marks)
+lowest_score = Lowest(marks)
+absent_count = Absent(marks)
+frequency = HighestFrequency(marks)
 
-        # Update frequency count
-        if mark in frequency:
-            frequency[mark] += 1
-        else:
-            frequency[mark] = 1
-
-# Calculate average
-if present_count > 0:
-    average = sum_marks / present_count
-else:
-    average = 0
-
-# Find mark with highest frequency
+# Find the most frequent mark using if-else
 if frequency:
     most_frequent_mark = max(frequency, key=frequency.get)
 else:
@@ -58,7 +77,10 @@ else:
 
 # Display results
 print(f"\nAverage score of the class: {average:.2f}")
-print(f"Highest score in the class: {highest}")
-print(f"Lowest score in the class: {lowest}")
+print(f"Highest score in the class: {highest_score}")
+print(f"Lowest score in the class: {lowest_score}")
 print(f"Number of students absent for the test: {absent_count}")
-print(f"Mark with the highest frequency: {most_frequent_mark}")
+if most_frequent_mark is not None:
+    print(f"Mark with the highest frequency: {most_frequent_mark}")
+else:
+    print("Mark with the highest frequency: No marks available")
