@@ -90,8 +90,9 @@ while True:
         print(f"\nMark(s) with the highest frequency ({max_frequency} times): {', '.join(map(str, most_frequent_marks))}")
 
     elif choice == 5:
-        print("Exiting the program. Goodbye!")
+        print("Exiting the program.")
         break
 
     else:
         print("Invalid choice! Please select a valid option.")
+
