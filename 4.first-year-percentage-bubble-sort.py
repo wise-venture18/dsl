@@ -6,7 +6,6 @@ b) Bubble sort and display top five scores"""
 
 #CODE:-
 
-# Function to perform Selection Sort
 def selection_sort(arr):
     n = len(arr)
     for i in range(n):
@@ -28,10 +27,12 @@ def bubble_sort(arr):
 
 # Function to display top five scores
 def display_top_five(arr):
-    sorted_arr = sorted(arr)  # Sorting in ascending order
+    sorted_arr = bubble_sort(arr)  # Sorting in ascending order
+    sorted_arr.reverse()  # Reverse the list to get descending order
     print("Top Five Scores:")
     for i in range(min(5, len(sorted_arr))):
         print(sorted_arr[i])
+
 
 # Main program
 percentages = []
